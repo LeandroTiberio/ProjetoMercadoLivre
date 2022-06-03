@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoMercadoLivre.Lib", "ProjetoMercadoLivre.Lib\ProjetoMercadoLivre.Lib.csproj", "{41E89D19-615D-43BC-A4D8-C778CE4F99B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoMercadoLivre.Web", "ProjetoMercadoLivre.Web\ProjetoMercadoLivre.Web.csproj", "{AFD4017B-1AF6-4DFB-A68C-AEAE40E1CEF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{41E89D19-615D-43BC-A4D8-C778CE4F99B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41E89D19-615D-43BC-A4D8-C778CE4F99B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41E89D19-615D-43BC-A4D8-C778CE4F99B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFD4017B-1AF6-4DFB-A68C-AEAE40E1CEF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFD4017B-1AF6-4DFB-A68C-AEAE40E1CEF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFD4017B-1AF6-4DFB-A68C-AEAE40E1CEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFD4017B-1AF6-4DFB-A68C-AEAE40E1CEF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

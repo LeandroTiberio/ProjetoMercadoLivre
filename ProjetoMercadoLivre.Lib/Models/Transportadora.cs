@@ -2,10 +2,13 @@ namespace ProjetoMercadoLivre.Lib.Models
 {
     public class Transportadora
     {
+        public int Id { get; set; }
         public string Nome { get; set; }
         public double Telefone { get; set; }
         public string Email { get; set; }
-
+        public Transportadora Transportadoras { get; set; }
+        public List<Pedido> Pedidos { get; set; }
+        
         public Transportadora(string nome, double telefone, string email)
         {
             SetNome(nome);

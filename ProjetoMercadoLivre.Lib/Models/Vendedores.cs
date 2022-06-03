@@ -2,11 +2,13 @@ namespace ProjetoMercadoLivre.Lib.Models
 {
     public class Vendedores 
     {
+        public int Id { get; set; }
+        public List<Produto> Produtos { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
         public double Cnpj { get; set; }
         public DateTime DataCadastro { get; set; }
-        
+       
         public Vendedores(string nome, string email, double cnpj, DateTime dataCadastro)
         {
             SetNome(nome);

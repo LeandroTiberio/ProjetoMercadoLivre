@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using ProjetoMercadoLivre.Lib.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ProjetoMercadoLivre.Web.Controllers;
@@ -12,10 +14,33 @@ public class WeatherForecastController : ControllerBase
     };
 
     private readonly ILogger<WeatherForecastController> _logger;
+    private readonly MercadoLivreContext _context; 
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(ILogger<WeatherForecastController> logger, MercadoLivreContext context)
     {
         _logger = logger;
+        _context = context;
+    }
+    
+    [HttpGet("Primeiro/(id)")]
+    public IActionResult GetTeste(int id)
+    {
+        var usuarios = _context.Usuarios.Update;
+        return Ok(usuarios);
+    }
+
+    [HttpGet("Segundo/(id)")]
+    public IActionResult GetTeste2(int id)
+    {
+        var produtos = _context.Produtos.Update;
+        return Ok(produtos);
+    }
+
+    [HttpGet("Terceiro/(id)")]
+    public IActionResult GetTeste3(int id)
+    {
+        var pedidos = _context.Pedidos.Update;
+        return Ok(pedidos);
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
