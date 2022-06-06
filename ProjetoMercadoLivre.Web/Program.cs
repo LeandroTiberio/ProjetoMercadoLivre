@@ -1,6 +1,7 @@
 using ProjetoMercadoLivre.Lib.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,8 @@ builder.Services.AddDbContext<MercadoLivreContext>
 (conn => conn.UseNpgsql(builder.Configuration.GetConnectionString("MercadoLivreDb"))
     .UseLowerCaseNamingConvention());
                 
-
+builder.Services.AddControllers()
+                .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

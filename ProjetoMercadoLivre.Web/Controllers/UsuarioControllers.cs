@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using ProjetoMercadoLivre.Lib.Data;
 
 
-namespace ProjetoMercadoLivre.Web.Controllers;
+namespace ProjetoMercadoLivre.Web.Controllers
+{
 
     [ApiController]
     [Route("[controller]")]
@@ -53,4 +54,6 @@ namespace ProjetoMercadoLivre.Web.Controllers;
             return Ok();
         }
     }
+}
+
 
