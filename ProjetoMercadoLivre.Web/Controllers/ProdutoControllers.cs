@@ -1,7 +1,7 @@
 using ProjetoMercadoLivre.Lib.Models;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoMercadoLivre.Lib.Data;
-
+using ProjetoMercadoLivre.Lib.Data.Repositorios;
 
 namespace ProjetoMercadoLivre.Web.Controllers
 {
@@ -10,32 +10,31 @@ namespace ProjetoMercadoLivre.Web.Controllers
 
     public class ProdutoControllers : ControllerBase
     {
-        private readonly MercadoLivreContext _context; 
-        public ProdutoControllers(MercadoLivreContext context)
+        private readonly ProdutoRepositorio _context;
+        public ProdutoControllers(ProdutoRepositorio context)
         {
             _context = context;
         }
-    
-
+       
         [HttpGet]
         public IActionResult GetTodos()
         {
             var produtos = _context.Produtos.ToList();
             return Ok(produtos);
         }
-        [HttpGet("{id}")]
-        public IActionResult GetPorId(int id)
+        [HttpGet("Produto {id}")]
+        public IActionResult GetProdutoId(int id)
         {
-            return Ok(_context.Produtos.Find(id));
+            var produtos = _context.Produtos
+            return Ok(_context.Produto.Find(id));
         }
-        [HttpPost()]
-        public IActionResult SavePorId(Produto produto)
+        [HttpPost("Adicionar Produto")]
+        public IActionResult AdicionarProduto(Produto produto)
         {
-            _context.Produtos.Add(produto);
-            _context.SaveChanges();
+            _context.Produto.Add(produto);
             return Ok();
         }
-        [HttpPut()]
+        [HttpPut("Confirmar")]
         public IActionResult ConfirmaValor(int idProduto, double valor)
         {
             var produto = _context.Produtos.Find(idProduto);
@@ -44,7 +43,7 @@ namespace ProjetoMercadoLivre.Web.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Deletar Produto Por{id}")]
         public IActionResult DeleteById(int id)
         {
             var produto = _context.Produtos.Find(id);

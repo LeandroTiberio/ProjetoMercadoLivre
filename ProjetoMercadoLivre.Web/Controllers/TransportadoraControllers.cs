@@ -21,19 +21,19 @@ namespace ProjetoMercadoLivre.Web.Controllers
             var transportadora = _context.Transportadoras.ToList();
             return Ok(transportadora);
         }
-        [HttpGet("{id}")]
-        public IActionResult GetPorId(int id)
+        [HttpGet("Transportadora{id}")]
+        public IActionResult GetTransportadoraId(int id)
         {
             return Ok(_context.Transportadoras.Find(id));
         }
-        [HttpPost()]
-        public IActionResult SavePorId(Transportadora transportadora)
+        [HttpPost("Adicionar Transportadora")]
+        public IActionResult AdicionarTransportadoraId(Transportadora transportadora)
         {
             _context.Transportadoras.Add(transportadora);
             _context.SaveChanges();
             return Ok();
         }
-        [HttpPut()]
+        [HttpPut("Atualizar")]
         public IActionResult AtualizarNome(int idTransportadora, string nome)
         {
             var transportadora = _context.Transportadoras.Find(idTransportadora);
@@ -42,7 +42,7 @@ namespace ProjetoMercadoLivre.Web.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Deletar Transportadora Por {id}")]
         public IActionResult DeleteById(int id)
         {
             var transportadora = _context.Transportadoras.Find(id);

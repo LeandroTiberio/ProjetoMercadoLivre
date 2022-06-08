@@ -23,19 +23,19 @@ namespace ProjetoMercadoLivre.Web.Controllers
             var pedidos = _context.Pedidos.ToList();
             return Ok(pedidos);
         }
-        [HttpGet("{id}")]
-        public IActionResult GetPorId(int id)
+        [HttpGet("Pedido {id}")]
+        public IActionResult GetPedidoId(int id)
         {
             return Ok(_context.Pedidos.Find(id));
         }
-        [HttpPost()]
-        public IActionResult SavePorId(Pedido pedido)
+        [HttpPost("Adicionar pedido")]
+        public IActionResult AdicionarPedidoId(Pedido pedido)
         {
             _context.Pedidos.Add(pedido);
             _context.SaveChanges();
             return Ok();
         }
-        [HttpPut()]
+        [HttpPut("Confirmar")]
         public IActionResult ConfirmaValor(int idPedido, DateTime datapedido)
         {
             var pedido = _context.Pedidos.Find(idPedido);
@@ -44,7 +44,7 @@ namespace ProjetoMercadoLivre.Web.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Deletar Pedido Por{id}")]
         public IActionResult DeleteById(int id)
         {
             var pedido = _context.Pedidos.Find(id);
