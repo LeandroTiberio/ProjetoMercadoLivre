@@ -1,6 +1,7 @@
 using ProjetoMercadoLivre.Lib.Models;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoMercadoLivre.Lib.Data;
+using ProjetoMercadoLivre.Lib.Data.Repositorios;
 
 
 namespace ProjetoMercadoLivre.Web.Controllers
@@ -10,46 +11,43 @@ namespace ProjetoMercadoLivre.Web.Controllers
     
     public class PedidoControllers : ControllerBase
     {
-        private readonly MercadoLivreContext _context; 
-        public PedidoControllers(MercadoLivreContext context)
+        private readonly PedidoRepositorio _repositorio; 
+        
+        public PedidoControllers(PedidoRepositorio _repositorio)
         {
-            _context = context;
+            _repositorio = _repositorio;
         }
     
 
-        [HttpGet]
+        [HttpGet("ListarTodos")]
         public IActionResult GetTodos()
         {
-            var pedidos = _context.Pedidos.ToList();
+            var pedidos = _repositorio.GetTodos();
             return Ok(pedidos);
         }
-        [HttpGet("Pedido {id}")]
+        [HttpGet("{id}")]
         public IActionResult GetPedidoId(int id)
         {
-            return Ok(_context.Pedidos.Find(id));
+            var pedidos = _repositorio.BuscarPorId(id);
+            return Ok(pedidos);
         }
-        [HttpPost("Adicionar pedido")]
-        public IActionResult AdicionarPedidoId(Pedido pedido)
+        [HttpPost()]
+        public IActionResult AdicionarPedido(Pedido pedido)
         {
-            _context.Pedidos.Add(pedido);
-            _context.SaveChanges();
-            return Ok();
+            _repositorio.Adicionar(pedido);
+            return Ok(pedido);
         }
-        [HttpPut("Confirmar")]
-        public IActionResult ConfirmaValor(int idPedido, DateTime datapedido)
+        [HttpPut()]
+        public IActionResult ConfirmaPedido(int idPedido, DateTime datapedido)
         {
-            var pedido = _context.Pedidos.Find(idPedido);
-            pedido.DataPedido = datapedido;
-            _context.SaveChanges();
+            _repositorio.ConfirmaPedido(idPedido, datapedido);
             return Ok();
         }
 
-        [HttpDelete("Deletar Pedido Por{id}")]
+        [HttpDelete("{id}")]
         public IActionResult DeleteById(int id)
         {
-            var pedido = _context.Pedidos.Find(id);
-            _context.Pedidos.Remove(pedido);
-            _context.SaveChanges();
+            _repositorio.DeleteById(id);
             return Ok();
         }
     }

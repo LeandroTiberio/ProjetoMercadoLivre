@@ -1,6 +1,6 @@
 namespace ProjetoMercadoLivre.Lib.Models
 {
-    public class Vendedores 
+    public class Vendedores : ModelBase
     {
         public int Id { get; set; }
         public List<Produto> Produtos { get; set; }

@@ -1,6 +1,6 @@
 namespace ProjetoMercadoLivre.Lib.Models
 {
-    public class Transportadora
+    public class Transportadora : ModelBase
     {
         public int Id { get; set; }
         public string Nome { get; set; }

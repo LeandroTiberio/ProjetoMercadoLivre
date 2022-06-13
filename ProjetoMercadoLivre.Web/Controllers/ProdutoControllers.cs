@@ -10,45 +10,41 @@ namespace ProjetoMercadoLivre.Web.Controllers
 
     public class ProdutoControllers : ControllerBase
     {
-        private readonly ProdutoRepositorio _context;
-        public ProdutoControllers(ProdutoRepositorio context)
+        private readonly ProdutoRepositorio _repositorio;
+        public ProdutoControllers(ProdutoRepositorio repositorio)
         {
-            _context = context;
+            _repositorio = repositorio;
         }
        
-        [HttpGet]
+        [HttpGet("ListarTodos")]
         public IActionResult GetTodos()
         {
-            var produtos = _context.Produtos.ToList();
+            var produtos = _repositorio.GetTodos();
             return Ok(produtos);
         }
-        [HttpGet("Produto {id}")]
+        [HttpGet("{id}")]
         public IActionResult GetProdutoId(int id)
         {
-            var produtos = _context.Produtos
-            return Ok(_context.Produto.Find(id));
+            var produto = _repositorio.BuscarPorId(id);
+            return Ok(produto);
         }
-        [HttpPost("Adicionar Produto")]
+        [HttpPost()]
         public IActionResult AdicionarProduto(Produto produto)
-        {
-            _context.Produto.Add(produto);
+        {   
+            _repositorio.Adicionar(produto);
             return Ok();
         }
-        [HttpPut("Confirmar")]
-        public IActionResult ConfirmaValor(int idProduto, double valor)
+        [HttpPut()]
+        public IActionResult AlterarValor(int idProduto, double valor)
         {
-            var produto = _context.Produtos.Find(idProduto);
-            produto.Valor = valor;
-            _context.SaveChanges();
+            _repositorio.AlterarValor(idProduto, valor );
             return Ok();
         }
 
-        [HttpDelete("Deletar Produto Por{id}")]
+        [HttpDelete("{id}")]
         public IActionResult DeleteById(int id)
         {
-            var produto = _context.Produtos.Find(id);
-            _context.Produtos.Remove(produto);
-            _context.SaveChanges();
+            _repositorio.DeleteById(id);
             return Ok();
         }
     }

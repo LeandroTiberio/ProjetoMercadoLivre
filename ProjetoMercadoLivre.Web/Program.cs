@@ -24,6 +24,13 @@ builder.Services.AddScoped<TransportadoraRepositorio>();
 builder.Services.AddScoped<UsuarioRepositorio>();
 builder.Services.AddScoped<VendedoresRepositorio>();
 builder.Services.AddScoped<ProdutoXPedidoRepositorio>();
+builder.Services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
+builder.Services.AddScoped<IPedidoRepositorio, PedidoRepositorio>();
+builder.Services.AddScoped<IProdutoXPedidoRepositorio, ProdutoXPedidoRepositorio>();
+builder.Services.AddScoped<ITransportadoraRepositorio, TransportadoraRepositorio>();
+builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+builder.Services.AddScoped<IVendedoresRepositorio, VendedoresRepositorio>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

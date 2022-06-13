@@ -1,6 +1,7 @@
 using ProjetoMercadoLivre.Lib.Models;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoMercadoLivre.Lib.Data;
+using ProjetoMercadoLivre.Lib.Data.Repositorios;
 
 namespace ProjetoMercadoLivre.Web.Controllers
 {
@@ -8,46 +9,42 @@ namespace ProjetoMercadoLivre.Web.Controllers
     [Route("[controller]")]
     public class TransportadoraControllers : ControllerBase
     {
-        private readonly MercadoLivreContext _context; 
-        public TransportadoraControllers(MercadoLivreContext context)
+        private readonly TransportadoraRepositorio _repositorio; 
+        public TransportadoraControllers(TransportadoraRepositorio repositorio)
         {
-            _context = context;
+            _repositorio = repositorio;
         }
     
 
         [HttpGet]
         public IActionResult GetTodos()
         {
-            var transportadora = _context.Transportadoras.ToList();
+            var transportadora = _repositorio.GetTodos();
             return Ok(transportadora);
         }
-        [HttpGet("Transportadora{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetTransportadoraId(int id)
         {
-            return Ok(_context.Transportadoras.Find(id));
+            var transportadora = _repositorio.BuscarPorId(id);
+            return Ok(transportadora);
         }
-        [HttpPost("Adicionar Transportadora")]
+        [HttpPost()]
         public IActionResult AdicionarTransportadoraId(Transportadora transportadora)
         {
-            _context.Transportadoras.Add(transportadora);
-            _context.SaveChanges();
+            _repositorio.Adicionar(transportadora);
             return Ok();
         }
-        [HttpPut("Atualizar")]
+        [HttpPut()]
         public IActionResult AtualizarNome(int idTransportadora, string nome)
         {
-            var transportadora = _context.Transportadoras.Find(idTransportadora);
-            transportadora.Nome = nome;
-            _context.SaveChanges();
+            _repositorio.AtualizarNome(idTransportadora, nome);
             return Ok();
         }
 
-        [HttpDelete("Deletar Transportadora Por {id}")]
+        [HttpDelete("{id}")]
         public IActionResult DeleteById(int id)
         {
-            var transportadora = _context.Transportadoras.Find(id);
-            _context.Transportadoras.Remove(transportadora);
-            _context.SaveChanges();
+            _repositorio.DeleteById(id);
             return Ok();
         }
     }

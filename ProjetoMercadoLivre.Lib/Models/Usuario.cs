@@ -1,16 +1,17 @@
 namespace ProjetoMercadoLivre.Lib.Models
 {
-    public class Usuario
+    public class Usuario : ModelBase
     {
+        public int? Usuarios  { get; set; }
         public List<Pedido> Pedidos { get; set; }
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
-        public double Cpf { get; set; }
+        public string Cpf { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Senha { get; set; }
 
-        public Usuario(string nome, string email, double cpf, DateTime dataNascimento, string senha)
+        public Usuario(string nome, string email, string cpf, DateTime dataNascimento, string senha)
         {
             SetNome(nome);
             SetEmail(email);
@@ -34,11 +35,11 @@ namespace ProjetoMercadoLivre.Lib.Models
         {
             Email = Email;
         }
-        public double GetCpf()
+        public string GetCpf()
         {
             return Cpf;
         }
-        public void SetCpf(double cpf)
+        public void SetCpf(string cpf)
         {
             Cpf = cpf;
         }

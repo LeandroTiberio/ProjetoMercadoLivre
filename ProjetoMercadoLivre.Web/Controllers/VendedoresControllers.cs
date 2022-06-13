@@ -10,7 +10,7 @@ namespace ProjetoMercadoLivre.Web.Controllers
     public class VendedoresControllers : ControllerBase
     {
         private readonly MercadoLivreContext _context; 
-        public PedidoControllers(MercadoLivreContext context)
+        public VendedoresControllers(MercadoLivreContext context)
         {
             _context = context;
         }
@@ -19,7 +19,7 @@ namespace ProjetoMercadoLivre.Web.Controllers
         [HttpGet]
         public IActionResult GetTodos()
         {
-            var vendedores = _context.vendedores.ToList();
+            var vendedores = _context.Vendedores.ToList();
             return Ok(vendedores);
         }
         [HttpGet("Vendedores {id}")]
